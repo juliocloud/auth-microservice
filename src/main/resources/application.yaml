@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: auth_microservice
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres_db
-    username: postgres_user
-    password: postgres_password
