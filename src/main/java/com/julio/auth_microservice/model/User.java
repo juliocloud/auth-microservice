@@ -2,7 +2,6 @@ package com.julio.auth_microservice.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.transaction.Transactional;
 import lombok.Data;
 
 import java.util.UUID;
