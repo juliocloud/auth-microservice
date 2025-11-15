@@ -7,7 +7,6 @@ import com.julio.auth_microservice.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +25,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity create(User user){
+    @PostMapping("/register")
+    public ResponseEntity create(@RequestBody User user){
         this.userService.create(user);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -42,14 +41,9 @@ public class UserController {
         return jwtUtils.generateToken(auth.getName());
     }
 
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "This endpoint is not secure";
-    }
-
     @GetMapping("/admin/adminProfile")
     @PreAuthorize("hasRole('ADMIN')")
-    public String adminProfile(){
+    public String testAdminRoute(){
         return "This is an admin route";
     }
 }
