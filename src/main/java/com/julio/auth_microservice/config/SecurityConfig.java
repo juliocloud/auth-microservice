@@ -20,6 +20,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    public static final String[] PERMITTED_URLS = {"/", "/public/**", "/error", "/css/*", "/js/**", "/images/**"};
+
+
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder){
         UserDetails admin = User
@@ -40,13 +43,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/public/**", "/error").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/auth/welcome").permitAll()
-                        .requestMatchers("/auth/admin/**").authenticated()
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(auth -> auth.requestMatchers(PERMITTED_URLS).permitAll().anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(basic -> {})
                 .build();
