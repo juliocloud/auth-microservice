@@ -2,7 +2,6 @@ package com.julio.auth_microservice.service;
 
 import com.julio.auth_microservice.model.User;
 import com.julio.auth_microservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
