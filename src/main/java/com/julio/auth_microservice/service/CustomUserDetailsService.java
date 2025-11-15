@@ -1,11 +1,15 @@
 package com.julio.auth_microservice.service;
 
+import com.julio.auth_microservice.enums.Role;
 import com.julio.auth_microservice.model.User;
 import com.julio.auth_microservice.repository.UserRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
-                //.roles(user.getAuthorities().toArray(new String[0]))
+                .roles(user.getRoles().toArray(new String[0]))
                 .build();
     }
 }
