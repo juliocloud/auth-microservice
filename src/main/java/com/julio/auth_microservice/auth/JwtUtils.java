@@ -1,11 +1,7 @@
 package com.julio.auth_microservice.auth;
 
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.Locator;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SecretKeyBuilder;
-import io.jsonwebtoken.security.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
