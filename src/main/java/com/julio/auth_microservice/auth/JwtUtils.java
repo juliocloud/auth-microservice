@@ -30,7 +30,7 @@ public class JwtUtils {
     }
 
     private Key getSignatureKey(){
-        return Keys.hmacShaKeyFor(JWT_SECRET.getBytes(StandardCharsets.UTF_8));
+        return Jwts.SIG.HS256.key().build();
     }
 
     public boolean validateToken(String token){
