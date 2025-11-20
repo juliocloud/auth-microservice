@@ -32,10 +32,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password){
+    public String login(@RequestBody User user){
 
         Authentication auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
+                new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
         );
 
         return jwtUtils.generateToken(auth.getName());
